@@ -11,11 +11,11 @@ import CartProduct from './Componets/CartProduct/CartProduct';
 
 function App() {
 
-  const theme = createTheme({
-    typography: {
-      fontFamily: 'monospace',
-    },
-  });
+    const theme = createTheme({
+      typography: {
+        fontFamily: 'monospace',
+      },
+    });
 
   return (
     <>

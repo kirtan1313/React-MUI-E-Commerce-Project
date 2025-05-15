@@ -79,7 +79,6 @@ const OffCanvas = () => {
                             justifyContent: 'start',
                             alignItems: 'center',
                             gap: 2,
-                            cursor: 'pointer',
                             paddingTop: '30px',
                         }}
                     >
