@@ -1,0 +1,28 @@
+.banner-img-1{
+    background-image: url('../../assets/imags/category-1.jpg');
+    background-position: center;
+    overflow: hidden;
+    background-size: cover;
+}
+.banner-img-2,
+.banner-img-3,
+.banner-img-4,
+.banner-img-5{
+    background-position: center;
+    background-size: cover;
+}
+.banner-img-2{
+    background-image: url('../../assets/imags/category-2.jpg');
+}
+.banner-img-3{
+    background-image: url('../../assets/imags/category-3.jpg');
+}
+.banner-img-4{
+    background-image: url('../../assets/imags/category-4.jpg');
+}
+.banner-img-5{
+    background-image: url('../../assets/imags/category-5.jpg');
+}
+body{
+    font-family: monospace !important;
+}
