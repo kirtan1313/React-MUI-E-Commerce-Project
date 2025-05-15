@@ -4,24 +4,39 @@ import logo from '../../assets/imags/logo.png';
 import { CiHeart, CiSearch, CiShoppingCart } from 'react-icons/ci';
 import CloseIcon from '@mui/icons-material/Close';
 import OffCanvas from '../OffCanvas/OffCanvas';
+import { useNavigate } from 'react-router';
 
 function Header() {
     const [showSearch, setShowSearch] = useState(false);
-     const [activeItem, setActiveItem] = useState('Home');
+    const [activeItem, setActiveItem] = useState('Home');
+    const navigate = useNavigate();
 
     const toggleSearch = () => {
         setShowSearch((prev) => !prev);
     };
 
-     const handleSetActive = (item) => {
-        setActiveItem(item); 
+    const handleSetActive = (item, path) => {
+        setActiveItem(item);
+        navigate(path)
+        console.log("path", path);
+
     };
+    const menuItems = [
+        { name: 'Home', path: '/' },
+        { name: "Men's", path: '/mens' },
+        { name: "Women's", path: '/womens' },
+        { name: "Kid's", path: '/kids' },
+        { name: 'Shop', path: '/shop' },
+        { name: 'Contact', path: '/contact' },
+    ];
+
+ 
 
     return (
         <>
 
             {/* Header */}
-            <AppBar sx={{ bgcolor: 'white', zIndex: showSearch ? 999 : 'auto', padding:{xs:'8px 0'}, position: 'unset' }}>
+            <AppBar sx={{ bgcolor: 'white', zIndex: showSearch ? 999 : 'auto', padding: { xs: '8px 0' }, position: 'unset' }}>
                 <Toolbar
                     sx={{
                         display: 'flex',
@@ -45,10 +60,10 @@ function Header() {
                     {/* Navigation Menu */}
                     <Box sx={{ color: 'black', display: { xs: 'none', md: 'block' } }}>
                         <List sx={{ display: 'flex', gap: 2 }}>
-                            {['Home', "Men's", "Women's", "Kid's", 'Shop', 'Contact'].map((item) => (
+                            {menuItems.map(({ name, path }) => (
                                 <ListItem
-                                    key={item}
-                                    onClick={() => handleSetActive(item)}
+                                    key={name}
+                                    onClick={() => handleSetActive(name, path)}
                                     sx={{
                                         fontSize: '16px',
                                         textTransform: 'uppercase',
@@ -64,7 +79,7 @@ function Header() {
                                             position: 'absolute',
                                             bottom: 0,
                                             left: 0,
-                                             width: activeItem === item ? '100%' : '0',
+                                            width: activeItem === name ? '100%' : '0',
                                             height: '2px',
                                             backgroundColor: 'red',
                                             transition: 'width 0.3s ease',
@@ -72,10 +87,11 @@ function Header() {
                                         },
                                     }}
                                 >
-                                    {item}
+                                    {name}
                                 </ListItem>
                             ))}
                         </List>
+
                     </Box>
 
                     {/* Icons Section */}
@@ -91,7 +107,7 @@ function Header() {
                         >
                             <CiSearch />
                         </Box>
-                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }}>
+                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }} onClick={() => navigate('/wishlist')}>
                             <CiHeart />
                             <Box sx={{
                                 position: 'absolute',
@@ -111,7 +127,7 @@ function Header() {
                                 2
                             </Box>
                         </Box>
-                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }}>
+                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }} onClick={() => navigate('/CartProduct')}>
                             <CiShoppingCart />
                             <Box sx={{
                                 position: 'absolute',

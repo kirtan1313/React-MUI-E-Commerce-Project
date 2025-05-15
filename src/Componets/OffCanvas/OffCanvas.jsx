@@ -4,14 +4,26 @@ import logo from '../../assets/imags/logo.png';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import { CiHeart, CiSearch, CiShoppingCart } from 'react-icons/ci';
+import { useNavigate } from 'react-router';
 
 const OffCanvas = () => {
     const [open, setOpen] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const [activeItem, setActiveItem] = useState('Home');
+    const navigate = useNavigate();
 
-    const handleSetActive = (item) => {
+    const menuItems = [
+        { name: 'Home', path: '/' },
+        { name: "Men's", path: '/mens' },
+        { name: "Women's", path: '/womens' },
+        { name: "Kid's", path: '/kids' },
+        { name: 'Shop', path: '/shop' },
+        { name: 'Contact', path: '/contact' },
+    ];
+
+    const handleSetActive = (item, path) => {
         setActiveItem(item);
+        navigate(path)
     };
 
     const toggleDrawer = (state) => () => {
@@ -81,7 +93,7 @@ const OffCanvas = () => {
                         >
                             <CiSearch />
                         </Box>
-                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }}>
+                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }} onClick={() => navigate('/wishlist')}>
                             <CiHeart />
                             <Box
                                 sx={{
@@ -102,7 +114,7 @@ const OffCanvas = () => {
                                 2
                             </Box>
                         </Box>
-                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }}>
+                        <Box sx={{ fontSize: '25px', position: 'relative', color: 'black', fontWeight: 700 }} onClick={() => navigate('/CartProduct')}>
                             <CiShoppingCart />
                             <Box
                                 sx={{
@@ -127,27 +139,27 @@ const OffCanvas = () => {
 
                     {/* Menu Section */}
                     <Box sx={{ color: 'black' }}>
-                        <List>
-                            {['Home', "Men's", "Women's", "Kid's", 'Shop', 'Contact'].map((item) => (
+                        <List sx={{ gap: 2 }}>
+                            {menuItems.map(({ name, path }) => (
                                 <ListItem
-                                    key={item}
-                                     onClick={() => handleSetActive(item)}
+                                    key={name}
+                                    onClick={() => handleSetActive(name, path)}
                                     sx={{
                                         fontSize: '16px',
                                         textTransform: 'uppercase',
                                         cursor: 'pointer',
                                         position: 'relative',
                                         listStyle: 'none',
-                                        padding: '10px 0',
+                                        padding: '10px 10px',
                                         ':hover::after': {
-                                            width: '30%',
+                                            width: '36%',
                                         },
                                         '::after': {
                                             content: '""',
                                             position: 'absolute',
                                             bottom: 0,
                                             left: 0,
-                                           width: activeItem === item ? '26%' : '0',
+                                            width: activeItem === name ? '26%' : '0',
                                             height: '2px',
                                             backgroundColor: 'red',
                                             transition: 'width 0.3s ease',
@@ -155,7 +167,7 @@ const OffCanvas = () => {
                                         },
                                     }}
                                 >
-                                    {item}
+                                    {name}
                                 </ListItem>
                             ))}
                         </List>

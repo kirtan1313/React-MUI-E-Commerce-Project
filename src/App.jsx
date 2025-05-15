@@ -1,19 +1,19 @@
 import { createTheme, ThemeProvider } from '@mui/material';
 import Banner from './Componets/Banner/Banner'
 import Header from './Componets/Header/Header'
-import NewProdct from './Componets/NewProduct/Newrodct';
-import Discout from './Componets/Discount/Discout';
-import TrendingProduct from './Componets/TrendingProduct/TrendingProduct';
-import Shoping from './Componets/Shopping/Shoping';
-import PaymentOption from './Componets/PaymentOption/PaymentOption';
+
+import { Route, Routes } from 'react-router';
+import Wishlist from './Componets/Wishlist/Wishlist';
 import Footer from './Componets/Footer/Footer';
+import Home from './Componets/Wraper/Home';
+import CartProduct from './Componets/CartProduct/CartProduct';
 
 
 function App() {
 
   const theme = createTheme({
     typography: {
-      fontFamily: 'monospace', 
+      fontFamily: 'monospace',
     },
   });
 
@@ -21,15 +21,16 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <Header />
-        <Banner />
-        <NewProdct />
-         <Discout />
-        <TrendingProduct />
-        <Shoping />
-        <PaymentOption />
+
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path='/CartProduct' element={<CartProduct />} />
+        </Routes>
         <Footer />
       </ThemeProvider>
-      
+
+
     </>
   )
 }

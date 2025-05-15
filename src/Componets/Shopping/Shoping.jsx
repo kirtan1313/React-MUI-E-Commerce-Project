@@ -22,9 +22,9 @@ function Shoping() {
                 },
                 // gap: {  sm: '15px', md: '20px' }, 
                 paddingTop: '60px',
-                paddingX: '10px', 
+                // paddingX: '10px', 
                 boxSizing: 'border-box', 
-                width: '100vw', 
+                width: {xs:'100vw',md:'100%'}, 
             }}
         >
             {[socialMediaImg1, socialMediaImg2, socialMediaImg3, socialMediaImg4, socialMediaImg5].map((img, index) => (
